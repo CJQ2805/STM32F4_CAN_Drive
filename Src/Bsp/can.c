@@ -94,6 +94,45 @@ void CAN_InitHandle(u8 u8channel, u16 u16baud_rate_k)
 }
 
 
+int CAN_Tx(u8 u8channel, u32 u32ExtId, u8 *pu8data, u8 u8len)
+{
+	HAL_StatusTypeDef  hal_type = HAL_OK;
+	int ierro = 0;
+	
+	if(u8len > 8)
+	{
+		return -1;
+	}
+	
+	g_atcan_param[u8channel].tcan_tx_header.ExtId   			= u32ExtId;
+	g_atcan_param[u8channel].tcan_tx_header.DLC       			= u8len;
+	g_atcan_param[u8channel].tcan_tx_header.RTR					= CAN_RTR_DATA;
+	g_atcan_param[u8channel].tcan_tx_header.IDE					= CAN_ID_EXT;
+	g_atcan_param[u8channel].tcan_tx_header.TransmitGlobalTime  = ENABLE;
+
+	memcpy(g_atcan_param[u8channel].au8tx_data, pu8data, u8len);
+	
+	/*三次重发机制*/
+	for(u8 i = 0; i < 3; i++)
+	{
+		hal_type = HAL_CAN_AddTxMessage(&g_atcan_param[u8channel].hcan, &g_atcan_param[u8channel].tcan_tx_header, g_atcan_param[u8channel].au8tx_data, &g_atcan_param[u8channel].u32tx_mail_box);
+		if(hal_type != HAL_OK)
+		{
+			ierro = -1;
+			continue;
+		}
+		else if(hal_type == HAL_OK)
+		{
+			ierro = 0;
+			break;
+		}
+	}
+	
+	return ierro;
+}
+
+
+
 
 static uint32_t HAL_RCC_CAN1_CLK_ENABLED=0;
 

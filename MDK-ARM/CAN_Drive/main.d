@@ -34,5 +34,6 @@ can_drive\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 can_drive\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 can_drive\main.o: ..\Src\Bsp\bsp.h
 can_drive\main.o: ..\Src\Bsp\bsp.h
+can_drive\main.o: E:\keil5\ARM\ARMCC\Bin\..\include\string.h
 can_drive\main.o: ../Core/Inc/stm32f4xx_it.h
 can_drive\main.o: ..\Src\Bsp\can.h
