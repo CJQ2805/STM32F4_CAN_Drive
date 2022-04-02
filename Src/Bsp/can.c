@@ -26,8 +26,7 @@ struct _can_param_t g_atcan_param[2];
 void CAN_Init(void)
 {	
 	CAN_InitHandle(CAN1_CHANNEL, 250);
-	CAN_InitHandle(CAN2_CHANNEL, 250);
-	
+	CAN_InitHandle(CAN2_CHANNEL, 250);	
 }
 
 void CAN_InitHandle(u8 u8channel, u16 u16baud_rate_k)
