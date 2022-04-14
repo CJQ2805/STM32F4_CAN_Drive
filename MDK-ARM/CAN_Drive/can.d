@@ -3,6 +3,7 @@ can_drive\can.o: ..\Src\Bsp\can.h
 can_drive\can.o: ..\Src\Bsp\bsp.h
 can_drive\can.o: ..\Src\Bsp\bsp.h
 can_drive\can.o: E:\keil5\ARM\ARMCC\Bin\..\include\string.h
+can_drive\can.o: E:\keil5\ARM\ARMCC\Bin\..\include\stdio.h
 can_drive\can.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
 can_drive\can.o: ../Core/Inc/stm32f4xx_hal_conf.h
 can_drive\can.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h

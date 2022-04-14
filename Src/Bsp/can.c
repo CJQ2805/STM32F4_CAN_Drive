@@ -92,6 +92,30 @@ void CAN_InitHandle(u8 u8channel, u16 u16baud_rate_k)
 	}	
 }
 
+void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
+{
+	/*Get rx message */
+	if(hcan->Instance == g_atcan_param[CAN1_CHANNEL].hcan.Instance)
+	{
+		if(HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, (CAN_RxHeaderTypeDef*)&g_atcan_param[CAN1_CHANNEL].tcan_rx_header, (u8*)g_atcan_param[CAN1_CHANNEL].au8rx_data) != HAL_OK)
+		{
+			printf("error");
+			
+		}else{
+			//这里就是CAN1接收到的整包数据，可以单独封装函数进行处理
+			
+		}
+	}
+	
+	if(hcan->Instance == g_atcan_param[CAN2_CHANNEL].hcan.Instance)
+	{
+		if(HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, (CAN_RxHeaderTypeDef*)&g_atcan_param[CAN2_CHANNEL].tcan_rx_header, (u8*)g_atcan_param[CAN2_CHANNEL].au8rx_data))
+		{
+			//这里就是CAN2接收到的整包数据，可以单独封装函数进行处理		
+		}
+	}
+
+}
 
 int CAN_Tx(u8 u8channel, u32 u32ExtId, u8 *pu8data, u8 u8len)
 {
@@ -158,7 +182,7 @@ void HAL_CAN_MspInit(CAN_HandleTypeDef* hcan)
     __HAL_RCC_GPIOI_CLK_ENABLE();
     __HAL_RCC_GPIOA_CLK_ENABLE();
     /**CAN1 GPIO Configuration
-    PI9     ------> CAN1_RX
+    PI9    	 ------> CAN1_RX
     PA12     ------> CAN1_TX
     */
     GPIO_InitStruct.Pin = GPIO_PIN_9;
