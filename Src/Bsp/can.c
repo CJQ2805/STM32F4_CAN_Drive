@@ -1,6 +1,6 @@
 #include "can.h"
 #include "bsp.h"
-
+#include "j1939.h"
 struct _can_param_t{
 	
 	CAN_HandleTypeDef hcan;
@@ -102,6 +102,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 			printf("error");
 			
 		}else{
+			j1939_rx_data((CAN_RxHeaderTypeDef*)&g_atcan_param[CAN1_CHANNEL].tcan_rx_header,(u8 *)g_atcan_param[CAN1_CHANNEL].au8rx_data);
 			//这里就是CAN1接收到的整包数据，可以单独封装函数进行处理
 			
 		}
@@ -109,9 +110,13 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 	
 	if(hcan->Instance == g_atcan_param[CAN2_CHANNEL].hcan.Instance)
 	{
-		if(HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, (CAN_RxHeaderTypeDef*)&g_atcan_param[CAN2_CHANNEL].tcan_rx_header, (u8*)g_atcan_param[CAN2_CHANNEL].au8rx_data))
+		if(HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, (CAN_RxHeaderTypeDef*)&g_atcan_param[CAN2_CHANNEL].tcan_rx_header, (u8*)g_atcan_param[CAN2_CHANNEL].au8rx_data) != HAL_OK)
 		{
-			//这里就是CAN2接收到的整包数据，可以单独封装函数进行处理		
+		
+		}
+		else
+		{
+			//这里就是CAN2接收到的整包数据，可以单独封装函数进行处理
 		}
 	}
 

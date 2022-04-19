@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F429xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;..\Src\Bsp</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;..\Src\Bsp;..\Src\Middle</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -521,6 +521,16 @@
               <FileName>can.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\Bsp\can.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>middle</GroupName>
+          <Files>
+            <File>
+              <FileName>j1939.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\Middle\j1939.c</FilePath>
             </File>
           </Files>
         </Group>

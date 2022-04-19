@@ -23,6 +23,7 @@
 "can_drive\system_stm32f4xx.o"
 "can_drive\bsp.o"
 "can_drive\can.o"
+"can_drive\j1939.o"
 --library_type=microlib --strict --scatter "CAN_Drive\CAN_Drive.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
