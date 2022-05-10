@@ -33,5 +33,5 @@ typedef __packed struct __j1939_packet_t {
 
 
 void j1939_rx_data(void * pvcan_rx_header, u8 *pu8data);
-
+int j1939_rx_data_handle(const pt_j1939_packet ptj1939_rxpacket);
 #endif
